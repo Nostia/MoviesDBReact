@@ -1,0 +1,15 @@
+.header-wrapper {
+  /* width: 100%; */
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  margin-right: 20px;
+}
+
+.search-input {
+  height: 20px;
+  width: 600px;
+}

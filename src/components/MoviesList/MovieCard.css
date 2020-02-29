@@ -1,0 +1,5 @@
+.movie-wrapper {
+  display: inline-block;
+  margin: 10px;
+  min-width: 300px;
+}
