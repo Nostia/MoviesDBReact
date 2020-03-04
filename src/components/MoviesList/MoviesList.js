@@ -1,18 +1,16 @@
 import React from "react";
 import MovieCard from "./MovieCard.js";
+import { connect } from 'react-redux'
 
-export default class MoviesList extends React.Component {
+class MoviesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [
-        { id: 1, title: "Movie1" },
-        { id: 2, title: "Movie2" },
-        { id: 3, title: "Movie3" },
-        { id: 4, title: "Movie4" },
-        { id: 5, title: "Movie5" }
-      ]
     };
+  }
+
+  componentDidMount() {
+    this.props.moviesListRequest()
   }
 
   render() {
@@ -20,7 +18,7 @@ export default class MoviesList extends React.Component {
       <div>
         <h1>Movies List</h1>
         <div className="movies-wrapper">
-          {this.state.movies.map(movie => (
+          {this.props.moviesList.map(movie => (
             <MovieCard key={movie.id} movieData={movie} />
           ))}
         </div>
@@ -28,3 +26,17 @@ export default class MoviesList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    moviesList: state.moviesList.items
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    moviesListRequest: () => dispatch({ type: "MOVIES_REQUEST", value: ''})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList)
